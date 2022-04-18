@@ -1,3 +1,19 @@
+$aligns: (
+  "start": 0 auto 1fr,
+  "center": 1fr auto 1fr,
+  "end": 1fr auto 0
+);
+$borders: (
+  solid,
+  dashed,
+  dotted
+);
+$weights: (
+  light,
+  regular,
+  heavy
+);
+
 .divider {
   display: grid;
   grid-template-rows: 1fr;
@@ -16,43 +32,23 @@
     margin: 5px 15px;
   }
 
-  // Alignment modifiers
-  &.divider--align-start {
-    grid-template-columns: 0 auto 1fr;
+  // Align modifiers
+  @each $name, $value in $aligns {
+    &.divider--align-#{$name} {
+      grid-template-columns: $value;
+    }
   }
 
-  &.divider--align-center {
-    grid-template-columns: 1fr auto 1fr;
+  @each $name in $borders {
+    &.divider--style-#{$name} .divider__hr {
+      border-top-style: $name;
+    }
   }
 
-  &.divider--align-end {
-    grid-template-columns: 1fr auto 0;
+  @each $name in $weights {
+    &.divider--weight-#{$name} .divider__hr {
+      border-top-width: index($weights, $name) + 1px;
+    }
   }
-
-  // Line Style modifiers
-  &.divider--style-solid .divider__hr {
-    border-top-style: solid;
-  }
-
-  &.divider--style-dashed .divider__hr {
-    border-top-style: dashed;
-  }
-
-  &.divider--style-dotted  .divider__hr {
-    border-top-style: dotted;
-  }
-
-  // Weights modifiers
-  &.divider--weight-light .divider__hr {
-    border-top-width: 1px;
-  }
-
-  &.divider--weight-regular .divider__hr {
-    border-top-width: 2px;
-  }
-
-  &.divider--weight-heavy .divider__hr {
-    border-top-width: 3px;
-  }
-
+  
 }

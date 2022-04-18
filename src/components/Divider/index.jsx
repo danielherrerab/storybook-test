@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types'
 import './styles.scss'
 
+/*
+@mixin alignments($aling, $sizes) {
+  &.divider--align-#{$aling} {
+    grid-template-columns: $sizes;
+  }
+}
+*/
+
 const Divider = ({ children, alignment, lineStyle, weight, ...props }) => {
   return (
     <div
